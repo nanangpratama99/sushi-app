@@ -28,6 +28,15 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldKey,
       backgroundColor: Colors.grey.shade200,
       appBar: buildAppBar(),
+      floatingActionButton: FloatingActionButton(
+        elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 138, 60, 55),
+        onPressed: () {},
+        child: const Icon(
+          Icons.shopping_bag_outlined,
+          size: 30,
+        ),
+      ),
       drawer: Drawer(
         shadowColor: Colors.transparent,
         shape: const RoundedRectangleBorder(
