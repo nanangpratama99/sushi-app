@@ -1,5 +1,6 @@
 import 'package:app_1/models/chip_menu_item.dart';
 import 'package:app_1/models/sashimi_item.dart';
+import 'package:app_1/screens/details/details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/menu_drawer.dart';
@@ -234,61 +235,78 @@ class _HomeScreenState extends State<HomeScreen> {
                         : sushiItemData.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 20),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(18),
-                        // boxShadow: [CustomWidget().boxShadow],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            selectedChipIndex == 0
-                                ? sushiItemData[index].icon
-                                : sashimiItemData[index].icon,
-                            width: 100,
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DetailScreen())),
+                    child: Stack(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(left: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.4),
+                            borderRadius: BorderRadius.circular(18),
+                            // boxShadow: [CustomWidget().boxShadow],
                           ),
-                          Row(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              Image.asset(
                                 selectedChipIndex == 0
-                                    ? sushiItemData[index].title
-                                    : sashimiItemData[index].title,
-                                style: const TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 15,
-                                ),
+                                    ? sushiItemData[index].icon
+                                    : sashimiItemData[index].icon,
+                                width: 100,
                               ),
-                              const SizedBox(width: 30),
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Icon(
-                                    Icons.star,
-                                    size: 20,
-                                    color: Colors.amber,
-                                  ),
                                   Text(
                                     selectedChipIndex == 0
-                                        ? sushiItemData[index].rating
-                                        : sashimiItemData[index].rating,
+                                        ? sushiItemData[index].title
+                                        : sashimiItemData[index].title,
                                     style: const TextStyle(
                                       color: Colors.black54,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15,
                                     ),
                                   ),
+                                  const SizedBox(width: 30),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.star,
+                                        size: 20,
+                                        color: Colors.amber,
+                                      ),
+                                      Text(
+                                        selectedChipIndex == 0
+                                            ? sushiItemData[index].rating
+                                            : sashimiItemData[index].rating,
+                                        style: const TextStyle(
+                                          color: Colors.black54,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               )
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        ),
+                        Positioned(
+                          right: 10,
+                          top: 10,
+                          child: Image.asset(
+                            'assets/images/save-1.png',
+                            width: 20,
+                          ),
+                        )
+                      ],
                     ),
                   );
                 },
